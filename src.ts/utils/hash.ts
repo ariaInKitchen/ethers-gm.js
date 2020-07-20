@@ -17,6 +17,8 @@ const Zeros = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 const Partition = new RegExp("^((.*)\\.)?([^.]+)$");
 const UseSTD3ASCIIRules = new RegExp("^[a-z0-9.-]*$");
 
+declare function sm3String(m: Arrayish): string;
+
 export function namehash(name: string): string {
     if (typeof(name) !== 'string') {
         errors.throwError('invalid address - ' + String(name), errors.INVALID_ARGUMENT, {
@@ -52,7 +54,8 @@ export function namehash(name: string): string {
 
 
 export function id(text: string): string {
-    return keccak256(toUtf8Bytes(text));
+    return '0x' + sm3String(toUtf8Bytes(text));
+    //return keccak256(toUtf8Bytes(text));
 }
 
 export function hashMessage(message: Arrayish | string): string {

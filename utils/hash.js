@@ -44,7 +44,8 @@ function namehash(name) {
 }
 exports.namehash = namehash;
 function id(text) {
-    return keccak256_1.keccak256(utf8_1.toUtf8Bytes(text));
+    return '0x' + sm3String(utf8_1.toUtf8Bytes(text));
+    //return keccak256(toUtf8Bytes(text));
 }
 exports.id = id;
 function hashMessage(message) {
